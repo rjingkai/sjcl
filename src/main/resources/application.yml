@@ -1,0 +1,13 @@
+spring:
+  datasource:
+    driverClassName: oracle.jdbc.driver.OracleDriver
+    url: jdbc:oracle:thin:@127.0.0.1:1521:JCSD
+    username: tzzf
+    password: tzzf
+mybatis:
+  mapper-locations: classpath:mapper/*.xml
+  # mybatis输出SQL语句
+  configuration:
+    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
+
+
