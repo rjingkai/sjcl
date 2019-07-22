@@ -1,0 +1,9 @@
+踩过的坑：
+1.pom.xml文件中的spring-boot-autoconfigure去掉版本，因为配置文件中使用了autoconfig，导致版本不一致，启动报错。
+2.@mapper注解：接口使用注解后会产生接口的实现类，并不代表指定了这就是个bean，导致注入失败。
+3.分清楚Resource和Autowired的注入方式：
+    1.@Resource是Java自己的注解，@Resource有两个属性是比较重要的，分是name和type；Spring将@Resource注解的name属性解析为bean的名字，而type属性则解析为bean的类型。所以如果使用name属性，则使用byName的自动注入策略，而使用type属性时则使用byType自动注入策略。如果既不指定name也不指定type属性，这时将通过反射机制使用byName自动注入策略。
+    2.@Autowired是spring的注解，是spring2.5版本引入的，Autowired只根据type进行注入，不会去匹配name。如果涉及到type无法辨别注入对象时，那需要依赖@Qualifier或@Primary注解一起来修饰
+4.jdbcUrl is required with driverClassName错误解决：
+    因为连接池的实际类型没有被公开，所以在您的自定义数据源的元数据中没有生成密钥，而且在IDE中没有完成(因为DataSource接口没有暴露属性)。另外，如果您碰巧在类路径上有Hikari，那么这个基本设置就不起作用了，因为Hikari没有url属性(但是确实有一个jdbcUrl属性)。在这种情况下，您必须重写您的配置如下:
+    将yml文件中的数据源url改为jdbc-url

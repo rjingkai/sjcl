@@ -27,7 +27,6 @@ public class DataBase1 {
     }
 
     @Bean(name = "test1SqlSessionFactory")
-    @Primary
     public SqlSessionFactory testSqlSessionFactory(@Qualifier("test1DataSource") DataSource dataSource)
             throws Exception {
         SqlSessionFactoryBean bean = new SqlSessionFactoryBean();

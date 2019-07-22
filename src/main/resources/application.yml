@@ -2,12 +2,12 @@ spring:
   datasource:
     test1:
       driverClassName: oracle.jdbc.driver.OracleDriver
-      url: jdbc:oracle:thin:@127.0.0.1:1521:JCSD
+      jdbc-url: jdbc:oracle:thin:@127.0.0.1:1521:JCSD
       username: tzzf
       password: tzzf
     test2:
       driverClassName: oracle.jdbc.driver.OracleDriver
-      url: jdbc:oracle:thin:@192.168.1.49:1521:ejpt
+      jdbc-url: jdbc:oracle:thin:@192.168.1.49:1521:ejpt
       username: tzzf
       password: tzzf
 mybatis:

@@ -14,6 +14,7 @@ import org.springframework.scheduling.annotation.EnableScheduling;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Component;
 
+import javax.annotation.Resource;
 import java.util.List;
 
 
@@ -30,10 +31,10 @@ public class ScheduleTask {
     @Autowired
     private HttpClient httpClient;
 
-    @Autowired
+    @Resource(name = "userService1")
     private userServiceDb1 userService1;
 
-    @Autowired
+    @Resource(name = "userService2")
     private userServiceDb2 userService2;
 
 

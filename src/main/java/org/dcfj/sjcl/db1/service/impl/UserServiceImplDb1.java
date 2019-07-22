@@ -8,15 +8,15 @@ import org.springframework.stereotype.Service;
 import javax.annotation.Resource;
 import java.util.List;
 
-@Service
+@Service("userService1")
 public class UserServiceImplDb1 implements userServiceDb1 {
 
     @Resource
-    private userDaoDb1 userDao;
+    private userDaoDb1 userDao1;
 
     @Override
     public List<User> getUser(){
-        return userDao.getUser();
+        return userDao1.getUser();
     }
 
 }
