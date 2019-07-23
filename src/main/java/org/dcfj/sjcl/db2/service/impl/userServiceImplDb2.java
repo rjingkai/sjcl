@@ -13,8 +13,13 @@ public class userServiceImplDb2 implements userServiceDb2 {
     private userDaoDb2 userDao2;
 
     @Override
-    public List<User> getUser(){
-        return userDao2.getUser();
+    public List<User> getUser(List<String> ids){
+        return userDao2.getUser(ids);
+    }
+
+    @Override
+    public void  batchInsert(List<User> list){
+        userDao2.batchInsert(list);
     }
 }
 

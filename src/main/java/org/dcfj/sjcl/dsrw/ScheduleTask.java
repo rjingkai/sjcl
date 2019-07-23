@@ -1,6 +1,6 @@
 package org.dcfj.sjcl.dsrw;
 
-import org.dcfj.sjcl.config.HttpClient;
+import org.dcfj.sjcl.utils.HttpClient;
 import org.dcfj.sjcl.db1.service.userServiceDb1;
 import org.dcfj.sjcl.db2.service.userServiceDb2;
 import org.dcfj.sjcl.model.User;
@@ -18,9 +18,6 @@ import javax.annotation.Resource;
 import java.util.List;
 
 
-@Component                //声明这是个组件
-@EnableScheduling         //开启定时任务
-@EnableAsync              //启用多线程
 public class ScheduleTask {
 
     private static Logger logger = LoggerFactory.getLogger(ScheduleTask.class);
@@ -38,8 +35,8 @@ public class ScheduleTask {
     private userServiceDb2 userService2;
 
 
-    @Async
-    @Scheduled(fixedDelay = 1000)
+   // @Async
+   // @Scheduled(fixedDelay = 1000)
     public void first(){
         logger.info("第一个定时任务开始！"+Thread.currentThread().getName() + userService1.getUser());
         List<User> list = userService1.getUser();
@@ -48,11 +45,11 @@ public class ScheduleTask {
         }
     }
 
-    @Async
-    @Scheduled(fixedDelay = 2000)
+  //  @Async
+ //   @Scheduled(fixedDelay = 2000)
     public void second(){
-        logger.info("第二个定时任务开始！"+Thread.currentThread().getName() + userService2.getUser());
-        List<User> list = userService2.getUser();
+        logger.info("第二个定时任务开始！"+Thread.currentThread().getName() + userService2.getUser(null));
+        List<User> list = userService2.getUser(null);
         for (int i =0;i<list.size();i++){
             System.out.println(list.get(i).getUsername());
         }

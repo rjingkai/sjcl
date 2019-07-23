@@ -6,5 +6,6 @@ import org.springframework.stereotype.Component;
 import java.util.List;
 
 public interface userServiceDb2 {
-    List<User> getUser();
+    List<User> getUser(List<String> ids);
+    void  batchInsert(List<User> list);
 }

@@ -2,7 +2,18 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="org.dcfj.sjcl.db2.dao.userDaoDb2">
 
-    <select id="getUser" resultType="org.dcfj.sjcl.model.User" >
-        SELECT * FROM USER_DCFJ
+    <select id="getUser" resultType="org.dcfj.sjcl.model.User" parameterType="java.util.List">
+        SELECT * FROM USER_DCFJ WHERE ID IN
+        <foreach collection="list" close=")" open="(" index="index" item="item" separator=",">
+            #{item}
+        </foreach>
     </select>
+
+    <insert id="batchInsert" parameterType="java.util.List">
+      INSERT  INTO TZZF.USER_DCFJ(ID,USERNAME,PASSWORD) VALUES 
+      <foreach collection="list" item="item" index="index" separator=",">
+          (#{item.id},#{item.username},#{item.password})
+      </foreach>
+
+    </insert>
 </mapper>

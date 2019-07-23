@@ -2,11 +2,11 @@ package org.dcfj.sjcl.model;
 
 public class User {
 
-    public int getId() {
+    public String getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(String id) {
         this.id = id;
     }
 
@@ -18,17 +18,17 @@ public class User {
         this.username = username;
     }
 
-    public String getPasword() {
-        return pasword;
+    public String getPassword() {
+        return password;
     }
 
-    public void setPasword(String pasword) {
-        this.pasword = pasword;
+    public void setPassword(String password) {
+        this.password = password;
     }
 
-    private int id;
+    private String id;
     private String username;
-    private String pasword;
+    private String password;
 
 
 }

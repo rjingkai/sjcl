@@ -1,4 +1,4 @@
-package org.dcfj.sjcl.config;
+package org.dcfj.sjcl.utils;
 
 import org.springframework.http.HttpMethod;
 import org.springframework.http.ResponseEntity;

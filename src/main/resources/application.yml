@@ -11,12 +11,21 @@ spring:
       username: tzzf
       password: tzzf
 mybatis:
-  #mapper-locations: classpath:mapper/*.xml
-  # mybatis输出SQL语句
   configuration:
     log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
 
 
 url: http://localhost:8083/order
+server:
+  port: 8080
+  tomcat:
+    max-connections: 2000
+    max-threads: 1000
+
+
+logging:
+  level:
+    org.dcfj.sjcl.db1.*: debug
+    org.dcfj.sjcl.db2.*: debug
 
 
