@@ -12,6 +12,9 @@ public class ScheduleTaskService {
     private Logger logger = LoggerFactory.getLogger(ScheduleTaskService.class);
     public final static String url = "http://localhost:8080/";
 
+    /**
+     * 十秒任务进行，定时器的入口，然后通过url访问controller，操作正式开始
+     */
     @Scheduled(cron = "0/10 * * * * ?")
     public void task(){
         logger.info("========定时任务开始========");

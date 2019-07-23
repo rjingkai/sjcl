@@ -54,11 +54,12 @@ public class SyncController {
             int excuteTimes = (count % eachTimeSynCount == 0) ? (count / eachTimeSynCount) : (count / eachTimeSynCount + 1);
             for (int i = 0;i<excuteTimes;i++){
                 // 每页第一个数据在result中的位置
-                int fromIndex =i * eachTimeSynCount;
+                int fromIndex = i * eachTimeSynCount;
                 // 每页最后一个数据在result中的位置
                 int toIndex = (count - fromIndex) > eachTimeSynCount ? ((i + 1) * eachTimeSynCount) : count;
                 String threadName = "Thread-" + currentTimeMillis + "-" + (i + 1);
                 try {
+                    //开始同步数据
                     service.asyncdatatask(syncService,threadName,list);
                 }catch (TaskRejectedException e){
                     logger.info("=============线程池满，等一秒钟=========");

@@ -10,6 +10,9 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 import java.util.Map;
 
+/**
+ * 数据同步业务类
+ */
 @Service
 public class AsyncService {
 
@@ -17,6 +20,7 @@ public class AsyncService {
 
     @Async
     public void asyncdatatask(SyncService SyncService, String threadname, List<User> list){
+        //调用同步数据方法
         Map<String,Object> result =  SyncService.asyncData(list);
         // 执行成功
         if (result.get("error") == null) {

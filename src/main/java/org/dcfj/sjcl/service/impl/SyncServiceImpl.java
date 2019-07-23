@@ -23,12 +23,21 @@ public class SyncServiceImpl implements SyncService {
     private userServiceDb2 userService2;
 
 
+    /**
+     * 查询需要同步的数据
+     * @return
+     */
     @Override
     public List<User> getUser(){
         return userService1.getUser();
     }
 
 
+    /**
+     * 同步数据操作
+     * @param list 需要同步的数据集合
+     * @return 返回同步结果
+     */
     @Override
     public Map<String,Object> asyncData(List<User> list){
         Map<String,Object> result = new HashMap<>();
@@ -40,28 +49,33 @@ public class SyncServiceImpl implements SyncService {
         int cf = 0;
 
         try {
-            //拼接已经存在的编号
+            //声明集合用来存需要插入的数据
             List<User> idslist = new ArrayList<User>();
+            //声明集合用来存需要插入数据的id，用于判断是否重复
             List<String> l = new ArrayList<>();
+            //循环传过来的需要插入的数据列表
             for (int i = 0;i<list.size();i++){
                 l.add(list.get(i).getId());
-
                 User user = new User();
                 BeanUtils.copyProperties(list.get(i),user);
                 idslist.add(user);
             }
 
-            //查询已经有的数据
+            //根据需要插入的数据的id查出重复的数据
             List<User> userList = userService2.getUser(l);
+            //如果重复数据list不为空，代表有重复数据
             if (CollectionUtils.isNotEmpty(userList)){
                 //去除已经有的数据编号
                 for (User ulist: userList) {
                     idslist.removeIf(user -> user.getId().equals(ulist.getId()));
                 }
-                addcount -=userList.size();
-                cf +=userList.size();
+                //操作需要同步的数据数量
+                addcount -= userList.size();
+                //操作重复数据的数量
+                cf += userList.size();
             }
 
+            //如果需要同步数据list不为空，则进行同步数据操作
             if (CollectionUtils.isNotEmpty(idslist)){
                 userService2.batchInsert(idslist);
             }
