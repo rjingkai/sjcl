@@ -2,30 +2,27 @@ spring:
   datasource:
     test1:
       driverClassName: oracle.jdbc.driver.OracleDriver
-      jdbc-url: jdbc:oracle:thin:@127.0.0.1:1521:JCSD
+      jdbc-url: jdbc:oracle:thin:@192.168.1.49:1521:ejpt
       username: tzzf
       password: tzzf
     test2:
       driverClassName: oracle.jdbc.driver.OracleDriver
-      jdbc-url: jdbc:oracle:thin:@192.168.1.49:1521:ejpt
+      jdbc-url: jdbc:oracle:thin:@127.0.0.1:1521:JCSD
       username: tzzf
       password: tzzf
-mybatis:
-  configuration:
-    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
 
+
+jurl: http://localhost:8080/hehe
 
 url: http://localhost:8083/order
 server:
-  port: 8080
+  port: 8088
   tomcat:
     max-connections: 2000
     max-threads: 1000
 
 
 logging:
-  level:
-    org.dcfj.sjcl.db1.*: debug
-    org.dcfj.sjcl.db2.*: debug
+  config: classpath:logback.xml
 
 

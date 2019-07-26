@@ -16,4 +16,20 @@
       </foreach>
 
     </insert>
+
+    <select id="getPcs" resultType="org.dcfj.sjcl.model.PcsBean" parameterType="java.util.List">
+        SELECT * FROM PCS WHERE ORGID IN
+        <foreach collection="list" separator="," item="item" index="index" open="(" close=")">
+            #{item}
+        </foreach>
+    </select>
+
+    <insert id="batchInsertPcs" parameterType="java.util.List">
+        INSERT ALL
+        <foreach collection="list" item="item" separator=" ">
+            INTO PCS (CKZS,LKZS,ORGID,ORGNAME,ZKZS,ROWNUM_) VALUES (#{item.CKZS,#{item.LKZS},#{item.ORGID},#{item.ORGNAME},#{item.ZKZS},#{item.ROWNUM_})
+        </foreach>
+
+        SELECT * FROM DUAL
+    </insert>
 </mapper>

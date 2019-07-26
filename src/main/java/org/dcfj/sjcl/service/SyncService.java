@@ -14,4 +14,6 @@ public interface SyncService {
 
     //同步数据
     Map<String,Object> asyncData(List<User> list);
+
+
 }

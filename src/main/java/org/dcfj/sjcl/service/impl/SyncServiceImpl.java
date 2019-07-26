@@ -1,5 +1,6 @@
 package org.dcfj.sjcl.service.impl;
 
+
 import org.apache.commons.collections.CollectionUtils;
 import org.dcfj.sjcl.db1.service.userServiceDb1;
 import org.dcfj.sjcl.db2.service.userServiceDb2;
@@ -7,8 +8,6 @@ import org.dcfj.sjcl.model.User;
 import org.dcfj.sjcl.service.SyncService;
 import org.springframework.beans.BeanUtils;
 import org.springframework.stereotype.Service;
-
-
 import javax.annotation.Resource;
 import java.util.*;
 
@@ -21,6 +20,7 @@ public class SyncServiceImpl implements SyncService {
 
     @Resource(name = "userService2")
     private userServiceDb2 userService2;
+
 
 
     /**
@@ -86,6 +86,8 @@ public class SyncServiceImpl implements SyncService {
         result.put("repeat", cf);
         return  result;
     }
+
+
 }
 
 
